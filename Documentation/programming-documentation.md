@@ -6,21 +6,22 @@
   - Death & Respawn
 
 ## Logan
-1. Importing .blend files
+1. Importing .blend files - Low Poly Chicken
   - .fbx
   - materials
   - see through
-
-2. 
+  - add colliders to chicken
 
 ## John
 1. Integrating the Code
-  - document errors
+  a. Error1
+    - not jumping high enough
+    - cannot move (WASD) while jumping/can't jump while moving
+
 
 ## Andy
 1. Expand the Playing Arena
   - create chicken coin
   - create treasure chest
 
-  
 1. ![#f03c15](https://placehold.co/15x15/f03c15/f03c15.png)
