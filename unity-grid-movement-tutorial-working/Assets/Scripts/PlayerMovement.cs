@@ -43,8 +43,36 @@ public class PlayerMovement : MonoBehaviour
     bool falling;
     float targetFallHeight;
 
+    public Rigidbody rb;
+    public float buttonTime = 0.5f;
+    public float jumpHeight = 5;
+    public float cancelRate = 100;
+    float jumpTime;
+    bool jumping;
+    bool jumpCancelled;
+
     void Update()
     {
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            float jumpForce = Mathf.Sqrt(jumpHeight);
+            rb.AddForce(new Vector3(0, jumpForce), ForceMode.Impulse);
+            jumping = true;
+            jumpCancelled = false;
+            jumpTime = 0;
+        }
+        if (jumping)
+        {
+            jumpTime += Time.deltaTime;
+            if (Input.GetKeyUp(KeyCode.Space))
+            {
+                jumpCancelled = true;
+            }
+            if (jumpTime > buttonTime)
+            {
+                jumping = false;
+            }
+        }
 
         // Set the ray positions every frame
 
@@ -233,22 +261,22 @@ public class PlayerMovement : MonoBehaviour
                 moving = true;
             }
         }
-        else if (Input.GetKeyDown(KeyCode.Space))
-        {
-            if (CanMove(Vector3.up))
-            {
-                targetPosition = transform.position + cameraRotator.transform.up;
-                startPosition = transform.position;
-                moving = true;
-            }
-            else if (CanMoveUp(Vector3.up))
-            {
-                targetPosition = transform.position + cameraRotator.transform.up + Vector3.up;
-                startPosition = transform.position;
-                moving = true;
-            }
 
-        }
+        //else if (Input.GetKeyDown(KeyCode.Space))
+        //{
+        //    if (CanMove(Vector3.up))
+        //    {
+        //        targetPosition = transform.position + cameraRotator.transform.up;
+        //        startPosition = transform.position;
+        //        moving = true;
+        //    }
+        //    else if (CanMoveUp(Vector3.up))
+        //    {
+        //        targetPosition = transform.position + cameraRotator.transform.up + Vector3.up;
+        //        startPosition = transform.position;
+        //        moving = true;
+        //    }
+        //}
 
         // Check if the player can move
 
@@ -297,6 +325,24 @@ public class PlayerMovement : MonoBehaviour
                 }
                 transform.position += direction;
             }
+        }
+    }
+}
+public class VariableJump : MonoBehaviour
+{
+    public Rigidbody rb;
+    public float buttonTime = 0.5f;
+    public float jumpHeight = 5;
+    public float cancelRate = 100;
+    float jumpTime;
+    bool jumping;
+    bool jumpCancelled;
+    
+    private void FixedUpdate()
+    {
+        if (jumpCancelled && jumping && rb.velocity.y > 0)
+        {
+            rb.AddForce(Vector3.down * cancelRate);
         }
     }
 }

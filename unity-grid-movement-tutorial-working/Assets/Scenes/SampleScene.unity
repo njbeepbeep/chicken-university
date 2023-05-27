@@ -1524,7 +1524,7 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 908395521}
   serializedVersion: 4
-  m_Mass: 1
+  m_Mass: 100
   m_Drag: 0
   m_AngularDrag: 0
   m_CenterOfMass: {x: 0, y: 0, z: 0}
@@ -1542,7 +1542,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 112
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
 --- !u!65 &908395523
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1592,20 +1592,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9b907a4bc5ee42048b15f0364d271874, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 12.07
+  moveSpeed: 12
   rayLength: 1.4
-  rayOffsetX: 0.48
+  rayOffsetX: 0.5
   rayOffsetY: 0.5
-  rayOffsetZ: 0.48
-  cameraRotator: {fileID: 1877022796}
+  rayOffsetZ: 0.5
+  cameraRotator: {fileID: 0}
   walkableMask:
     serializedVersion: 2
-    m_Bits: 1024
+    m_Bits: 0
   collidableMask:
     serializedVersion: 2
-    m_Bits: 1025
+    m_Bits: 0
   maxFallCastDistance: 100
   fallSpeed: 30
+  rb: {fileID: 0}
+  buttonTime: 0.5
+  jumpHeight: 5
+  cancelRate: 100
 --- !u!1 &951915266
 GameObject:
   m_ObjectHideFlags: 0
